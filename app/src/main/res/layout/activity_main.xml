@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.091" />
 
     <Button
-        android:id="@+id/btnCreat"
+        android:id="@+id/btnShow"
         style="@style/btn"
         android:background="@drawable/custom2"
 
@@ -47,7 +47,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnShow"
+        app:layout_constraintTop_toBottomOf="@+id/btnADD"
         app:layout_constraintVertical_bias="0.051" />
 
     <Button
@@ -55,7 +55,7 @@
         style="@style/btn"
         android:background="@drawable/custom2"
 
-        android:text="Update Course"
+        android:text="Search Course"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +79,7 @@
         app:layout_constraintVertical_bias="0.111" />
 
     <Button
-        android:id="@+id/btnShow"
+        android:id="@+id/btnADD"
         style="@style/btn"
         android:background="@drawable/custom2"
 
@@ -89,7 +89,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCreat"
+        app:layout_constraintTop_toBottomOf="@+id/btnShow"
         app:layout_constraintVertical_bias="0.049" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
