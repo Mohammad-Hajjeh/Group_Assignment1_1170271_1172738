@@ -128,38 +128,10 @@ public class SearchCourse extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(String result) {
-            /*String[][] StatesAndCapitals = {{"","","","","","",""}};
-            String[] courses = result.split("#");
-            for(int i=0;i<courses.length;i++)
-            {
-                Toast.makeText(SearchCourse.this, courses[i], Toast.LENGTH_SHORT).show();
-                String [] course = courses[i].split(",");
-                StatesAndCapitals[i][0]=course[0];
-                StatesAndCapitals[i][1]=course[1];
-                StatesAndCapitals[i][2]=course[2];
-                StatesAndCapitals[i][3]=course[3];
-                StatesAndCapitals[i][4]=course[4];
-                StatesAndCapitals[i][5]=course[5];
-                StatesAndCapitals[i][6]=course[6];
-            }
-
-                HashMap<String,String> item;
-                for(int i=0;i<StatesAndCapitals.length;i++){
-                    item = new HashMap<String,String>();
-                    item.put( "line1", StatesAndCapitals[i][0]);
-                    item.put( "line2", StatesAndCapitals[i][1]);
-                    item.put( "line3", StatesAndCapitals[i][2]);
-                    item.put( "line4", StatesAndCapitals[i][3]);
-                    item.put( "line5", StatesAndCapitals[i][4]);
-                    item.put( "line6", StatesAndCapitals[i][5]);
-                    item.put( "line7", StatesAndCapitals[i][6]);
-                    list.add( item );
-                }
-                ((ListView)findViewById(R.id.searchList)).setAdapter(sa);*/
             if (result.equalsIgnoreCase("Wrong Code No Data Found !")) {
                 Toast.makeText(SearchCourse.this, result, Toast.LENGTH_SHORT).show();
                 HashMap<String, String> item;
-                String StatesAndCapitals = "  Error: "+result;
+                String StatesAndCapitals = "            Error: "+result;
                     item = new HashMap<String, String>();
                     item.put("line1", StatesAndCapitals);
                     list.add(item);
@@ -167,11 +139,15 @@ public class SearchCourse extends AppCompatActivity {
 
             } else {
                 String str = result;
+                Toast.makeText(SearchCourse.this, result, Toast.LENGTH_SHORT).show();
                 String[] courses = str.split("#");
-                String[][] StatesAndCapitals = {{"", "", "", "", "", "", ""}};
-                for (int i = 0; i < 1; i++) {
-
-                    String[] course = courses[i].split("@");
+                String[][] StatesAndCapitals = {{"", "", "", "", "", "", ""},{"", "", "", "", "", "", ""}
+                ,{"", "", "", "", "", "", ""},{"", "", "", "", "", "", ""}
+                ,{"", "", "", "", "", "", ""},{"", "", "", "", "", "", ""}
+                        ,{"", "", "", "", "", "", ""},{"", "", "", "", "", "", ""}
+                        ,{"", "", "", "", "", "", ""},{"", "", "", "", "", "", ""}};
+                for (int i = 0; i <courses.length; i++) {
+                    String[] course = courses[i].split("@",7);
                     StatesAndCapitals[i][0] = "  Code: " + course[0];
                     StatesAndCapitals[i][1] = "  Name: " + course[1];
                     StatesAndCapitals[i][2] = "  Number: " + course[2];
@@ -182,6 +158,10 @@ public class SearchCourse extends AppCompatActivity {
                 }
                 HashMap<String, String> item;
                 for (int i = 0; i < StatesAndCapitals.length; i++) {
+                    if(StatesAndCapitals[i][0]==""&&StatesAndCapitals[i][1]==""&&StatesAndCapitals[i][2]==""
+                            &&StatesAndCapitals[i][3]==""&&StatesAndCapitals[i][4]==""&&StatesAndCapitals[i][5]==""
+                            &&StatesAndCapitals[i][6]=="")
+                        break;
                     item = new HashMap<String, String>();
                     item.put("line1", StatesAndCapitals[i][0]);
                     item.put("line2", StatesAndCapitals[i][1]);
@@ -189,12 +169,10 @@ public class SearchCourse extends AppCompatActivity {
                     item.put("line4", StatesAndCapitals[i][3]);
                     item.put("line5", StatesAndCapitals[i][4]);
                     item.put("line6", StatesAndCapitals[i][5]);
-                    item.put("line7", StatesAndCapitals[i][6]);
+                    item.put("line7", StatesAndCapitals[i][6].replaceAll("#",""));
                     list.add(item);
                 }
                 ((ListView) findViewById(R.id.searchList)).setAdapter(sa);
-                Toast.makeText(SearchCourse.this, courses[0], Toast.LENGTH_SHORT).show();
-                Toast.makeText(SearchCourse.this, result, Toast.LENGTH_SHORT).show();
             }
         }
     }
