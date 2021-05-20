@@ -12,7 +12,6 @@
         android:id="@+id/imageView2"
         android:layout_width="356dp"
         android:layout_height="117dp"
-        android:background="@drawable/custom2"
         android:src="@drawable/bzu2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +24,6 @@
         android:id="@+id/btnShow"
         style="@style/btn"
         android:background="@drawable/custom2"
-
         android:onClick="showCoursesClick"
         android:text="Show Courses"
         android:textColor="#FFFFFF"
