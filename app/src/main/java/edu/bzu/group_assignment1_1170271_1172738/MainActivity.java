@@ -19,4 +19,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,ShowCourses.class);
         startActivity(intent);
     }
+    public void serachCourseClick(View view) {
+        Intent intent = new Intent(this,SearchCourse.class);
+        startActivity(intent);
+    }
 }

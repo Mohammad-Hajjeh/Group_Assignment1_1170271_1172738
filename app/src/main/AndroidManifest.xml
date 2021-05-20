@@ -10,8 +10,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".ShowCourses"></activity>
+        <activity android:name=".SearchCourse"></activity>
+        <activity android:name=".UpdateCourse" />
+        <activity android:name=".AddCourse" />
+        <activity android:name=".ShowCourses" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

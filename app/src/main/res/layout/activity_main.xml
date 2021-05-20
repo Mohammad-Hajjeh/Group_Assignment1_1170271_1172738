@@ -55,6 +55,7 @@
         style="@style/btn"
         android:background="@drawable/custom2"
 
+        android:onClick="serachCourseClick"
         android:text="Search Course"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"

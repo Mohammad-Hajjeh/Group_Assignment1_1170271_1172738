@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
+    android:orientation="vertical"
+    tools:context=".SearchCourse">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="356dp"
+        android:layout_height="117dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/custom2"
+        android:src="@drawable/bzu2" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="525dp"
+        android:layout_marginTop="30dp">
+
+        <EditText
+            android:id="@+id/edtSerarch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:ems="10"
+            android:hint="Enter The Code Of Course"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="173dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtSerarch"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/custom2"
+            android:onClick="searchClick"
+            android:text="Search" />
+
+        <ListView
+            android:id="@+id/searchList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/button3" />
+
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_marginTop="15dp"
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/custom2"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="Back" />
+
+    </LinearLayout>
+</LinearLayout>
