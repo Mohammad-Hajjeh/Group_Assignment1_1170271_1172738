@@ -150,6 +150,34 @@ public class SearchCourse extends AppCompatActivity {
                     list.add( item );
                 }
                 ((ListView)findViewById(R.id.searchList)).setAdapter(sa);*/
+                String str = result;
+            String[] courses = str.split("#");
+            String[][] StatesAndCapitals = {{"","","","","","",""}};
+            for(int i=0;i<1;i++) {
+
+                String[] course = courses[i].split("@");
+                StatesAndCapitals[i][0] = "Code: " + course[0];
+                StatesAndCapitals[i][1] = "Name: " + course[1];
+                StatesAndCapitals[i][2] = "Number: " + course[2];
+                StatesAndCapitals[i][3] = "Lecturer: " + course[3];
+                StatesAndCapitals[i][4] = "Day: " + course[4];
+                StatesAndCapitals[i][5] = "Time: " + course[5];
+                StatesAndCapitals[i][6] = "Place: " + course[6];
+            }
+            HashMap<String,String> item;
+            for(int i=0;i<StatesAndCapitals.length;i++){
+                item = new HashMap<String,String>();
+                item.put( "line1", StatesAndCapitals[i][0]);
+                item.put( "line2", StatesAndCapitals[i][1]);
+                item.put( "line3", StatesAndCapitals[i][2]);
+                item.put( "line4", StatesAndCapitals[i][3]);
+                item.put( "line5", StatesAndCapitals[i][4]);
+                item.put( "line6", StatesAndCapitals[i][5]);
+                item.put( "line7", StatesAndCapitals[i][6]);
+                list.add( item );
+            }
+            ((ListView)findViewById(R.id.searchList)).setAdapter(sa);
+            Toast.makeText(SearchCourse.this, courses[0], Toast.LENGTH_SHORT).show();
             Toast.makeText(SearchCourse.this, result, Toast.LENGTH_SHORT).show();
         }
     }
