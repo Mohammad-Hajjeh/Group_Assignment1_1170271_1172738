@@ -121,6 +121,10 @@ public class SearchCourse extends AppCompatActivity {
         return str;
     }
 
+    public void btnSearchBack(View view) {
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);    }
+
     private class DownloadTextTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {

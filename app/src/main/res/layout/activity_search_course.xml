@@ -69,6 +69,7 @@
             android:layout_marginRight="15dp"
             android:layout_weight="1"
             android:background="@drawable/custom2"
+            android:onClick="btnSearchBack"
             android:text="Back" />
 
     </LinearLayout>
