@@ -3,15 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/custom"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity">
 
     <ListView
-        android:id="@+id/mobile_list"
+        android:id="@+id/course_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/custom"
-        android:dividerHeight="1dp">
-    </ListView>
+        android:layout_marginTop="15dp"
+        android:dividerHeight="1dp"></ListView>
 
 </LinearLayout>

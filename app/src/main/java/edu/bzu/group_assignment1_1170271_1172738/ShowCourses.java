@@ -3,83 +3,21 @@ package edu.bzu.group_assignment1_1170271_1172738;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
-import android.icu.text.SymbolTable;
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-
-public class ShowCourses extends AppCompatActivity {
-    ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
-    private SimpleAdapter sa;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_courses);
-        HashMap<String,String> item;
-        for(int i=0;i<StatesAndCapitals.length;i++){
-            item = new HashMap<String,String>();
-            item.put( "line1", StatesAndCapitals[i][0]);
-            item.put( "line2", StatesAndCapitals[i][1]);
-            list.add( item );
-        }
-        sa = new SimpleAdapter(this, list,
-                R.layout.twolines,
-                new String[] { "line1","line2" },
-                new int[] {R.id.line_a, R.id.line_b});
-        ((ListView)findViewById(R.id.mobile_list)).setAdapter(sa);
-    }
-
-    private String[][] StatesAndCapitals =
-            {{"Alabama","Montgomery"},
-                    {"Alaska","Juneau"},
-                    {"Arizona","Phoenix"},
-                    {"Arkansas","Little Rock"},
-                    {"California","Sacramento"},
-                    {"Colorado","Denver"},
-                    {"Connecticut","Hartford"},
-                    {"Delaware","Dover"},
-                    {"Florida","Tallahassee"},
-                    {"Georgia","Atlanta"},
-                    {"Hawaii","Honolulu"},
-                    {"Idaho","Boise"},
-                    {"Illinois","Springfield"},
-                    {"Indiana","Indianapolis"},
-                    {"Iowa","Des Moines"},
-                    {"Kansas","Topeka"},
-                    {"Kentucky","Frankfort"},
-                    {"Louisiana","Baton Rouge"},
-                    {"Maine","Augusta"}
-            ,{"Alaska","Juneau"},
-                    {"Arizona","Phoenix"},
-                    {"Arkansas","Little Rock"},
-                    {"California","Sacramento"},
-                    {"Colorado","Denver"},
-                    {"Connecticut","Hartford"},
-                    {"Delaware","Dover"},
-                    {"Florida","Tallahassee"},
-                    {"Georgia","Atlanta"},
-                    {"Hawaii","Honolulu"},
-                    {"Idaho","Boise"},
-                    {"Illinois","Springfield"},
-                    {"Indiana","Indianapolis"},
-                    {"Iowa","Des Moines"},
-                    {"Kansas","Topeka"},
-                    {"Kentucky","Frankfort"},
-                    {"Louisiana","Baton Rouge"},
-                    {"Maine","Augusta"}};
-}
-/*
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
+import android.widget.Toast;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -88,15 +26,24 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class ShowCourses extends AppCompatActivity {
+    ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+    private SimpleAdapter sa;
+    private SimpleAdapter sa2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
-
-    public void onClickbtn(View view) {
-        String url = "http://127.0.0.1:8080/test/info.php";
+        setContentView(R.layout.activity_show_courses);
+        sa = new SimpleAdapter(this, list,
+                R.layout.twolines,
+                new String[] { "line1","line2","line3","line4","line5","line6","line7" },
+                new int[] {R.id.line_a, R.id.line_b,R.id.line_c,R.id.line_d,R.id.line_e,R.id.line_f,R.id.line_g});
+        sa2 = new SimpleAdapter(this, list,
+                R.layout.oneline,
+                new String[] { "line1" },
+                new int[] {R.id.text1});
+        list.clear();
+        String url = "http://10.0.2.2:8080/rest/show.php";
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.INTERNET)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -109,9 +56,6 @@ public class ShowCourses extends AppCompatActivity {
             DownloadTextTask runner = new DownloadTextTask();
             runner.execute(url);
         }
-
-
-
     }
     private InputStream OpenHttpConnection(String urlString) throws IOException
     {
@@ -179,13 +123,53 @@ public class ShowCourses extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(String result) {
-            //Toast.makeText(getBaseContext(), result, Toast.LENGTH_LONG).show();
-            //String[] books = result.split(",");
-            //String str = "";
-            //for(String s : books){
-            //    str+= s + "\n";
-            // }
-            System.out.println(result);
+            if (result.equalsIgnoreCase("Wrong Code No Data Found !")) {
+                Toast.makeText(ShowCourses.this, result, Toast.LENGTH_SHORT).show();
+                HashMap<String, String> item;
+                String StatesAndCapitals = "            Error: "+result;
+                item = new HashMap<String, String>();
+                item.put("line1", StatesAndCapitals);
+                list.add(item);
+                ((ListView) findViewById(R.id.course_list)).setAdapter(sa2);
+
+            } else {
+                String str = result;
+                Toast.makeText(ShowCourses.this, result, Toast.LENGTH_SHORT).show();
+                String[] courses = str.split("#");
+                String[][] StatesAndCapitals = {{"", "", "", "", "", "", ""},{"", "", "", "", "", "", ""}
+                        ,{"", "", "", "", "", "", ""},{"", "", "", "", "", "", ""}
+                        ,{"", "", "", "", "", "", ""},{"", "", "", "", "", "", ""}
+                        ,{"", "", "", "", "", "", ""},{"", "", "", "", "", "", ""}
+                        ,{"", "", "", "", "", "", ""},{"", "", "", "", "", "", ""}};
+                for (int i = 0; i <courses.length; i++) {
+                    String[] course = courses[i].split("@",7);
+                    StatesAndCapitals[i][0] = "  Code: " + course[0];
+                    StatesAndCapitals[i][1] = "  Name: " + course[1];
+                    StatesAndCapitals[i][2] = "  Number: " + course[2];
+                    StatesAndCapitals[i][3] = "  Lecturer: " + course[3];
+                    StatesAndCapitals[i][4] = "  Day: " + course[4];
+                    StatesAndCapitals[i][5] = "  Time: " + course[5];
+                    StatesAndCapitals[i][6] = "  Place: " + course[6];
+                }
+                HashMap<String, String> item;
+                for (int i = 0; i < StatesAndCapitals.length; i++) {
+                    if(StatesAndCapitals[i][0]==""&&StatesAndCapitals[i][1]==""&&StatesAndCapitals[i][2]==""
+                            &&StatesAndCapitals[i][3]==""&&StatesAndCapitals[i][4]==""&&StatesAndCapitals[i][5]==""
+                            &&StatesAndCapitals[i][6]=="")
+                        break;
+                    item = new HashMap<String, String>();
+                    item.put("line1", StatesAndCapitals[i][0]);
+                    item.put("line2", StatesAndCapitals[i][1]);
+                    item.put("line3", StatesAndCapitals[i][2]);
+                    item.put("line4", StatesAndCapitals[i][3]);
+                    item.put("line5", StatesAndCapitals[i][4]);
+                    item.put("line6", StatesAndCapitals[i][5]);
+                    item.put("line7", StatesAndCapitals[i][6].replaceAll("#",""));
+                    list.add(item);
+                }
+                ((ListView) findViewById(R.id.course_list)).setAdapter(sa);
+            }
         }
     }
-}*/
+
+}
