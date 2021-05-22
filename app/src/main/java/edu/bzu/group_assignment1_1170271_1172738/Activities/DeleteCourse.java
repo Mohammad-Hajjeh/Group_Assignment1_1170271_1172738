@@ -29,6 +29,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.HashMap;
 
+import edu.bzu.group_assignment1_1170271_1172738.Models.Course;
 import edu.bzu.group_assignment1_1170271_1172738.R;
 
 public class DeleteCourse extends AppCompatActivity {
@@ -149,24 +150,33 @@ public class DeleteCourse extends AppCompatActivity {
     }
 
     public void onClickDelete(View view) {
-        String url = "http://10.0.2.2:8080/rest/delete.php?cat=" + code.getText().toString() + "&cat1="+number.getText().toString();
+        String codeLoad = code.getText().toString();
+        String codeNumber = number.getText().toString();
+        if (codeLoad.isEmpty() || codeNumber.isEmpty()) {
+            if (codeLoad.isEmpty())
+                Toast.makeText(this, "Error: Empty Code Filed !", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(this, "Error: Empty Section Filed !", Toast.LENGTH_SHORT).show();
 
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.INTERNET)
-                != PackageManager.PERMISSION_GRANTED) {
+        } else {
+            String url = "http://10.0.2.2:8080/rest/delete.php?cat=" + code.getText().toString() + "&cat1=" + number.getText().toString();
 
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.INTERNET},
-                    123);
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.INTERNET)
+                    != PackageManager.PERMISSION_GRANTED) {
 
-        } else{
-            DeleteCourse.SendPostRequest runner = new DeleteCourse.SendPostRequest();
-            runner.execute(url);
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.INTERNET},
+                        123);
+
+            } else {
+                DeleteCourse.SendPostRequest runner = new DeleteCourse.SendPostRequest();
+                runner.execute(url);
+            }
+            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
-        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-
 
 
 
@@ -186,13 +196,22 @@ public class DeleteCourse extends AppCompatActivity {
                 String str = result;
                 Toast.makeText(DeleteCourse.this, result, Toast.LENGTH_SHORT).show();
                 String[] course = str.split("@");
-                code.setText(course[0]);
-                name.setText(course[1]);
-                number.setText(course[2]);
-                lecturer.setText(course[3]);
-                date.setText(course[4]);
-                time.setText(course[5]);
-                place.setText(course[6].split("#")[0]);
+                    Course courseObject = new Course();
+                    courseObject.setCode(course[0]);
+                    courseObject.setName(course[1]);
+                    courseObject.setNumber(course[2]);
+                    courseObject.setLecturer(course[3]);
+                    courseObject.setDay(course[4]);
+                    courseObject.setTime(course[5]);
+                    courseObject.setPlace(course[5]);
+
+                code.setText(courseObject.getCode());
+                name.setText(courseObject.getName());
+                number.setText(courseObject.getNumber());
+                lecturer.setText(courseObject.getLecturer());
+                date.setText(courseObject.getDay());
+                time.setText(courseObject.getTime());
+                place.setText(courseObject.getPlace());
 
             }
         }

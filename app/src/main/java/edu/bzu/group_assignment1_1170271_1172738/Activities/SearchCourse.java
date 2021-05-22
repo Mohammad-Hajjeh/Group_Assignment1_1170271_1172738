@@ -25,6 +25,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
+import edu.bzu.group_assignment1_1170271_1172738.Models.Course;
 import edu.bzu.group_assignment1_1170271_1172738.R;
 
 public class SearchCourse extends AppCompatActivity {
@@ -171,13 +172,21 @@ public class SearchCourse extends AppCompatActivity {
                         ,{"", "", "", "", "", "", ""},{"", "", "", "", "", "", ""}};
                 for (int i = 0; i <courses.length; i++) {
                     String[] course = courses[i].split("@",7);
-                    StatesAndCapitals[i][0] = "  Code: " + course[0];
-                    StatesAndCapitals[i][1] = "  Name: " + course[1];
-                    StatesAndCapitals[i][2] = "  Number: " + course[2];
-                    StatesAndCapitals[i][3] = "  Lecturer: " + course[3];
-                    StatesAndCapitals[i][4] = "  Day: " + course[4];
-                    StatesAndCapitals[i][5] = "  Time: " + course[5];
-                    StatesAndCapitals[i][6] = "  Place: " + course[6];
+                    Course courseObject = new Course();
+                    courseObject.setCode(course[0]);
+                    courseObject.setName(course[1]);
+                    courseObject.setNumber(course[2]);
+                    courseObject.setLecturer(course[3]);
+                    courseObject.setDay(course[4]);
+                    courseObject.setTime(course[5]);
+                    courseObject.setPlace(course[5]);
+                    StatesAndCapitals[i][0] = "  Code: " + courseObject.getCode();
+                    StatesAndCapitals[i][1] = "  Name: " + courseObject.getName();
+                    StatesAndCapitals[i][2] = "  Number: " + courseObject.getNumber();
+                    StatesAndCapitals[i][3] = "  Lecturer: " + courseObject.getLecturer();
+                    StatesAndCapitals[i][4] = "  Day: " + courseObject.getDay();
+                    StatesAndCapitals[i][5] = "  Time: " + courseObject.getTime();
+                    StatesAndCapitals[i][6] = "  Place: " + courseObject.getPlace();
                 }
                 HashMap<String, String> item;
                 for (int i = 0; i < StatesAndCapitals.length; i++) {

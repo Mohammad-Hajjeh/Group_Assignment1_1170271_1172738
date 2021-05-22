@@ -28,6 +28,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.HashMap;
 
+import edu.bzu.group_assignment1_1170271_1172738.Models.Course;
 import edu.bzu.group_assignment1_1170271_1172738.R;
 
 public class UpdateCourse extends AppCompatActivity {
@@ -165,13 +166,22 @@ public class UpdateCourse extends AppCompatActivity {
                 String str = result;
                 Toast.makeText(UpdateCourse.this, result, Toast.LENGTH_SHORT).show();
                 String[] course = str.split("@");
-                code.setText(course[0]);
-                name.setText(course[1]);
-                number.setText(course[2]);
-                lecturer.setText(course[3]);
-                date.setText(course[4]);
-                time.setText(course[5]);
-                place.setText(course[6].split("#")[0]);
+                Course courseObject = new Course();
+                courseObject.setCode(course[0]);
+                courseObject.setName(course[1]);
+                courseObject.setNumber(course[2]);
+                courseObject.setLecturer(course[3]);
+                courseObject.setDay(course[4]);
+                courseObject.setTime(course[5]);
+                courseObject.setPlace(course[5]);
+
+                code.setText(courseObject.getCode());
+                name.setText(courseObject.getName());
+                number.setText(courseObject.getNumber());
+                lecturer.setText(courseObject.getLecturer());
+                date.setText(courseObject.getDay());
+                time.setText(courseObject.getTime());
+                place.setText(courseObject.getPlace());
 
             }
         }
