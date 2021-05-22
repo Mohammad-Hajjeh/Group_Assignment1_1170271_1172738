@@ -62,12 +62,11 @@
 
         <Button
             android:id="@+id/login"
-            android:layout_width="wrap_content"
+            android:layout_width="173dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="120dp"
             android:layout_marginTop="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_weight="1"
+            android:layout_marginRight="30dp"
             android:background="@drawable/custom2"
             android:onClick="btnSearchBack"
             android:text="Back" />

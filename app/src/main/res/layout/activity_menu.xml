@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/custom3"
     tools:context=".Activities.Menu">
 
 
@@ -12,6 +12,7 @@
         android:id="@+id/imageView2"
         android:layout_width="356dp"
         android:layout_height="117dp"
+        android:background="@drawable/custom2"
         android:src="@drawable/bzu2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,8 +54,8 @@
         android:id="@+id/btnDelete"
         style="@style/btn"
         android:background="@drawable/custom2"
-        android:text="Delete Course"
         android:onClick="deleteCoursesClick"
+        android:text="Delete Course"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

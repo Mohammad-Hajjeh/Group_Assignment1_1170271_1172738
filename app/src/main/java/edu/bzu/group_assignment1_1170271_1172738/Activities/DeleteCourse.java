@@ -62,22 +62,32 @@ public class DeleteCourse extends AppCompatActivity {
     }
 
     public void onClickLoad2(View view) {
-        String url = "http://10.0.2.2:8080/rest/search2.php?cat=" + code.getText().toString() + "&cat1="+number.getText().toString();
+        String codeLoad = code.getText().toString();
+        String codeNumber = number.getText().toString();
+        if (codeLoad.isEmpty() || codeNumber.isEmpty()) {
+            if (codeLoad.isEmpty())
+                Toast.makeText(this, "Error: Empty Code Filed !", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(this, "Error: Empty Section Filed !", Toast.LENGTH_SHORT).show();
 
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.INTERNET)
-                != PackageManager.PERMISSION_GRANTED) {
+        } else {
+            String url = "http://10.0.2.2:8080/rest/search2.php?cat=" + code.getText().toString() + "&cat1=" + number.getText().toString();
 
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.INTERNET},
-                    123);
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.INTERNET)
+                    != PackageManager.PERMISSION_GRANTED) {
 
-        } else{
-            DeleteCourse.DownloadTextTask1 runner = new DeleteCourse.DownloadTextTask1();
-            runner.execute(url);
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.INTERNET},
+                        123);
+
+            } else {
+                DeleteCourse.DownloadTextTask1 runner = new DeleteCourse.DownloadTextTask1();
+                runner.execute(url);
+            }
+            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
-        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
     private InputStream OpenHttpConnection(String urlString) throws IOException
     {
