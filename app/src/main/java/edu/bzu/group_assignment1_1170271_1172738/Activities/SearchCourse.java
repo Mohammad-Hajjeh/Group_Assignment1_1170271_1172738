@@ -124,7 +124,7 @@ public class SearchCourse extends AppCompatActivity {
     }
 
     public void btnSearchBack(View view) {
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, Menu.class);
         startActivity(intent);    }
 
     private class DownloadTextTask extends AsyncTask<String, Void, String> {

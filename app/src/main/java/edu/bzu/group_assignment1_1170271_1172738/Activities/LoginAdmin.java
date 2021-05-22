@@ -73,7 +73,7 @@ public class LoginAdmin extends AppCompatActivity {
                         LoginSessionManager loginSession = new LoginSessionManager(getApplicationContext());
                         loginSession.saveUserLoginSession(user);
 
-                        Intent toHomePageIntent = new Intent(LoginAdmin.this, MainActivity.class);
+                        Intent toHomePageIntent = new Intent(LoginAdmin.this, Menu.class);
                         LoginAdmin.this.startActivity(toHomePageIntent);
                         LoginAdmin.this.finish();
                     }

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/custom"
     android:orientation="vertical"
-    tools:context=".Activities.MainActivity">
+    tools:context=".Activities.Menu">
 
     <ListView
         android:id="@+id/course_list"

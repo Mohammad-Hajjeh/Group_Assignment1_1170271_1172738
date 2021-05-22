@@ -9,10 +9,6 @@ public class LoginSessionManager {
     private static final String SHAREDPREF_KEY_FIRSTNAME = "Firstname";
     private static final String SHAREDPREF_KEY_LASTNAME = "Lastname";
     private static final String SHAREDPREF_KEY_EMAIL = "Email_Address";
-    private static final String SHAREDPREF_KEY_GENDER = "Gender";
-    private static final String SHAREDPREF_KEY_COUNTRY = "Country";
-    private static final String SHAREDPREF_KEY_CITY = "City";
-    private static final String SHAREDPREF_KEY_PHONE = "Phone_Number";
     private static final String SHAREDPREF_KEY_ISLOGGEDIN = "isUserLoggedIn";
 
     private Context context;
@@ -32,10 +28,6 @@ public class LoginSessionManager {
         this.editor.putString(SHAREDPREF_KEY_FIRSTNAME, loggedInUser.getFirstName());
         this.editor.putString(SHAREDPREF_KEY_LASTNAME, loggedInUser.getLastName());
         this.editor.putString(SHAREDPREF_KEY_EMAIL, loggedInUser.getEmailAddress());
-        this.editor.putString(SHAREDPREF_KEY_GENDER, loggedInUser.getGender());
-        this.editor.putString(SHAREDPREF_KEY_COUNTRY, loggedInUser.getCountry());
-        this.editor.putString(SHAREDPREF_KEY_CITY, loggedInUser.getCity());
-        this.editor.putString(SHAREDPREF_KEY_PHONE, loggedInUser.getPhoneNumber());
         this.editor.putBoolean(SHAREDPREF_KEY_ISLOGGEDIN, this.isLoggedIn);
         this.editor.commit();
     }
@@ -53,10 +45,6 @@ public class LoginSessionManager {
         loggedInUser.setFirstName(this.sharedPreferences.getString(SHAREDPREF_KEY_FIRSTNAME,null));
         loggedInUser.setLastName(this.sharedPreferences.getString(SHAREDPREF_KEY_LASTNAME,null));
         loggedInUser.setEmailAddress(this.sharedPreferences.getString(SHAREDPREF_KEY_EMAIL,null));
-        loggedInUser.setGender(this.sharedPreferences.getString(SHAREDPREF_KEY_GENDER,null));
-        loggedInUser.setCountry(this.sharedPreferences.getString(SHAREDPREF_KEY_COUNTRY,null));
-        loggedInUser.setCity(this.sharedPreferences.getString(SHAREDPREF_KEY_CITY,null));
-        loggedInUser.setPhoneNumber(this.sharedPreferences.getString(SHAREDPREF_KEY_PHONE,null));
         return loggedInUser;
     }
 

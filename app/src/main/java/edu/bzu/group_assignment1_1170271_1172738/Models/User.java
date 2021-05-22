@@ -6,26 +6,20 @@ public class User {
     private String hashedPassword;
     private String firstName;
     private String lastName;
-    private String gender;
-    private String country;
-    private String city;
-    private String phoneNumber;
+
 
     public User() {
     }
 
     public User(Integer id, String emailAddress, String hashedPassword, String firstName,
-                String lastName, String gender, String country, String city, String phoneNumber) {
+                String lastName) {
 
         this.id = id;
         this.emailAddress = emailAddress;
         this.hashedPassword = hashedPassword;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.gender = gender;
-        this.country = country;
-        this.city = city;
-        this.phoneNumber = phoneNumber;
+
     }
 
 
@@ -69,37 +63,6 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
 
     @Override
     public String toString() {
@@ -109,10 +72,6 @@ public class User {
                 ", passwordHash='" + hashedPassword + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", gender='" + gender + '\'' +
-                ", country='" + country + '\'' +
-                ", city='" + city + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
 }

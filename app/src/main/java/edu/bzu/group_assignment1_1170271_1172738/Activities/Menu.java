@@ -9,12 +9,12 @@ import android.view.View;
 import edu.bzu.group_assignment1_1170271_1172738.R;
 
 
-public class MainActivity extends AppCompatActivity {
+public class Menu extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_menu);
     }
 
     public void showCoursesClick(View view) {
@@ -23,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
     }
     public void serachCourseClick(View view) {
         Intent intent = new Intent(this,SearchCourse.class);
+        startActivity(intent);
+    }
+
+    public void btnExitToLogin(View view) {
+        Intent intent = new Intent(this,LoginAdmin.class);
         startActivity(intent);
     }
 }

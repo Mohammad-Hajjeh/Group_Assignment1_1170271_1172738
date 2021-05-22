@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -43,9 +44,11 @@ public class SignupAdmin extends AppCompatActivity {
                         user.setFirstName(firstName);
                         user.setLastName(lastName);
                         boolean insertFlag;
-                        if ((insertFlag = databaseHelper.addUser(user)))
+                        if ((insertFlag = databaseHelper.addUser(user))) {
                             Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
-
+                            Intent intent = new Intent(SignupAdmin.this, LoginAdmin.class);
+                            startActivity(intent);
+                        }
                         else {
                             Toast.makeText(getApplicationContext(), "ERROR: Registeration Failed", Toast.LENGTH_SHORT).show();
                         }
@@ -146,5 +149,10 @@ public class SignupAdmin extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void btnExitToLogin2(View view) {
+            Intent intent = new Intent(this,LoginAdmin.class);
+            startActivity(intent);
     }
 }
