@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.SignupAdmin"></activity>
+        <activity android:name=".Activities.DeleteCourse"></activity>
+        <activity android:name=".Activities.SignupAdmin" />
         <activity android:name=".Activities.Menu" />
         <activity android:name=".Activities.SearchCourse" />
         <activity android:name=".Activities.UpdateCourse" />

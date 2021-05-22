@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gray"
-    tools:context=".Activities.UpdateCourse">
+    tools:context=".Activities.DeleteCourse">
 
     <ImageView
         android:id="@+id/imageView"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.026" />
 
     <EditText
-        android:id="@+id/etd_code"
+        android:id="@+id/etd_code2"
         android:layout_width="166dp"
         android:layout_height="40dp"
         android:ems="10"
@@ -38,7 +38,7 @@
         app:layout_constraintVertical_bias="0.251" />
 
     <EditText
-        android:id="@+id/etu_section"
+        android:id="@+id/etu_section2"
         android:layout_width="166dp"
         android:layout_height="40dp"
         android:ems="10"
@@ -55,11 +55,11 @@
         app:layout_constraintVertical_bias="0.251" />
 
     <Button
-        android:id="@+id/btnu_load"
+        android:id="@+id/btnu_load2"
         android:layout_width="119dp"
         android:layout_height="50dp"
         android:background="@drawable/custom2"
-        android:onClick="onClickLoad"
+        android:onClick="onClickLoad2"
         android:text="Load"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
         app:layout_constraintVertical_bias="0.327" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/textView102"
         android:layout_width="158dp"
         android:layout_height="40dp"
         android:gravity="center"
@@ -86,7 +86,7 @@
         app:layout_constraintVertical_bias="0.468" />
 
     <EditText
-        android:id="@+id/etu_place"
+        android:id="@+id/etu_place2"
         android:layout_width="166dp"
         android:layout_height="40dp"
         android:backgroundTint="@color/black"
@@ -101,7 +101,7 @@
         app:layout_constraintVertical_bias="0.794" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView62"
         android:layout_width="158dp"
         android:layout_height="40dp"
         android:gravity="center"
@@ -120,12 +120,12 @@
         app:layout_constraintVertical_bias="0.632" />
 
     <Button
-        android:id="@+id/btnu_update"
+        android:id="@+id/btn_delete"
         android:layout_width="119dp"
         android:layout_height="50dp"
         android:background="@drawable/custom2"
-        android:onClick="onClickUpdate"
-        android:text="Update"
+        android:onClick="onClickDelete"
+        android:text="Delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.294"
@@ -134,7 +134,7 @@
         app:layout_constraintVertical_bias="0.932" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/textView132"
         android:layout_width="158dp"
         android:layout_height="40dp"
         android:gravity="center"
@@ -152,7 +152,7 @@
         app:layout_constraintVertical_bias="0.794" />
 
     <EditText
-        android:id="@+id/etu_name"
+        android:id="@+id/etu_name2"
         android:layout_width="166dp"
         android:layout_height="40dp"
         android:backgroundTint="@color/black"
@@ -167,7 +167,7 @@
         app:layout_constraintVertical_bias="0.468" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/textView122"
         android:layout_width="158dp"
         android:layout_height="40dp"
         android:gravity="center"
@@ -185,7 +185,7 @@
         app:layout_constraintVertical_bias="0.716" />
 
     <EditText
-        android:id="@+id/etu_lecturer"
+        android:id="@+id/etu_lecturer2"
         android:layout_width="166dp"
         android:layout_height="40dp"
         android:backgroundTint="@color/black"
@@ -200,7 +200,7 @@
         app:layout_constraintVertical_bias="0.552" />
 
     <EditText
-        android:id="@+id/etu_time"
+        android:id="@+id/etu_time2"
         android:layout_width="166dp"
         android:layout_height="40dp"
         android:backgroundTint="@color/black"
@@ -215,11 +215,11 @@
         app:layout_constraintVertical_bias="0.716" />
 
     <Button
-        android:id="@+id/btnu_cancel"
+        android:id="@+id/btnu_cancel2"
         android:layout_width="119dp"
         android:layout_height="50dp"
         android:background="@drawable/custom2"
-        android:onClick="onClickCancel"
+        android:onClick="onClickCancel2"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -229,7 +229,7 @@
         app:layout_constraintVertical_bias="0.932" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/textView112"
         android:layout_width="165dp"
         android:layout_height="34dp"
         android:gravity="center"
@@ -247,7 +247,7 @@
         app:layout_constraintVertical_bias="0.548" />
 
     <EditText
-        android:id="@+id/etu_date"
+        android:id="@+id/etu_date2"
         android:layout_width="166dp"
         android:layout_height="40dp"
         android:backgroundTint="@color/black"

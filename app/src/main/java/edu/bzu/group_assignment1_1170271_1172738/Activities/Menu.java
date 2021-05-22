@@ -40,4 +40,9 @@ public class Menu extends AppCompatActivity {
         Intent intent = new Intent(this,UpdateCourse.class);
         startActivity(intent);
     }
+
+    public void deleteCoursesClick(View view) {
+        Intent intent = new Intent(this,DeleteCourse.class);
+        startActivity(intent);
+    }
 }

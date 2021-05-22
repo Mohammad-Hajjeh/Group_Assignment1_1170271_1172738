@@ -1,4 +1,5 @@
 package edu.bzu.group_assignment1_1170271_1172738.Activities;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -30,7 +31,7 @@ import java.util.HashMap;
 
 import edu.bzu.group_assignment1_1170271_1172738.R;
 
-public class UpdateCourse extends AppCompatActivity {
+public class DeleteCourse extends AppCompatActivity {
     public EditText code;
     public EditText name;
     public EditText number;
@@ -41,26 +42,26 @@ public class UpdateCourse extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_course);
+        setContentView(R.layout.activity_delete_course);
         initialize();
     }
 
     void initialize() {
-        code = findViewById(R.id.etd_code);
-        name = findViewById(R.id.etu_name);
-        number = findViewById(R.id.etu_section);
-        lecturer = findViewById(R.id.etu_lecturer);
-        time = findViewById(R.id.etu_time);
-        date = findViewById(R.id.etu_date);
-        place = findViewById(R.id.etu_place);
+        code = findViewById(R.id.etd_code2);
+        name = findViewById(R.id.etu_name2);
+        number = findViewById(R.id.etu_section2);
+        lecturer = findViewById(R.id.etu_lecturer2);
+        time = findViewById(R.id.etu_time2);
+        date = findViewById(R.id.etu_date2);
+        place = findViewById(R.id.etu_place2);
     }
 
-    public void onClickCancel(View view) {
+    public void onClickCancel2(View view) {
         Intent intent = new Intent(this, Menu.class);
         startActivity(intent);
     }
 
-    public void onClickLoad(View view) {
+    public void onClickLoad2(View view) {
         String url = "http://10.0.2.2:8080/rest/search2.php?cat=" + code.getText().toString() + "&cat1="+number.getText().toString();
 
         if (ContextCompat.checkSelfPermission(this,
@@ -72,7 +73,7 @@ public class UpdateCourse extends AppCompatActivity {
                     123);
 
         } else{
-            UpdateCourse.DownloadTextTask1 runner = new UpdateCourse.DownloadTextTask1();
+            DeleteCourse.DownloadTextTask1 runner = new DeleteCourse.DownloadTextTask1();
             runner.execute(url);
         }
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
@@ -137,6 +138,26 @@ public class UpdateCourse extends AppCompatActivity {
         return str;
     }
 
+    public void onClickDelete(View view) {
+        String url = "http://10.0.2.2:8080/rest/delete.php?cat=" + code.getText().toString() + "&cat1="+number.getText().toString();
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.INTERNET)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.INTERNET},
+                    123);
+
+        } else{
+            DeleteCourse.SendPostRequest runner = new DeleteCourse.SendPostRequest();
+            runner.execute(url);
+        }
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+
 
 
 
@@ -149,11 +170,11 @@ public class UpdateCourse extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if (result.equalsIgnoreCase("Wrong Code No Data Found !")) {
-                Toast.makeText(UpdateCourse.this, result, Toast.LENGTH_SHORT).show();
+                Toast.makeText(DeleteCourse.this, result, Toast.LENGTH_SHORT).show();
 
             } else {
                 String str = result;
-                Toast.makeText(UpdateCourse.this, result, Toast.LENGTH_SHORT).show();
+                Toast.makeText(DeleteCourse.this, result, Toast.LENGTH_SHORT).show();
                 String[] course = str.split("@");
                 code.setText(course[0]);
                 name.setText(course[1]);
@@ -253,78 +274,10 @@ public class UpdateCourse extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            Toast.makeText(UpdateCourse.this, result, Toast.LENGTH_SHORT).show();
-        }
-    }
-    public void onClickUpdate(View view) {
-        String restUrl = "http://10.0.2.2:8080/rest/update.php";
-        if(checkEditTexts()){
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.INTERNET)
-                    != PackageManager.PERMISSION_GRANTED) {
-
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.INTERNET},
-                        123);
-
-            } else {
-                UpdateCourse.SendPostRequest runner = new UpdateCourse.SendPostRequest();
-                runner.execute(restUrl);
-                Intent intent = new Intent(this, Menu.class);
-                startActivity(intent);
-            }
-        }
-        else{
-            Toast.makeText(UpdateCourse.this, "Please Fill All The Fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(DeleteCourse.this, result, Toast.LENGTH_SHORT).show();
         }
     }
 
-
-    boolean checkEditTexts() {
-        if (code.getText().toString().equals(""))
-        { code.setBackgroundColor(Color.RED);
-            return false;
-        }
-        if (name.getText().toString().equals("")){
-            name.setBackgroundColor(Color.RED);
-            return false;}
-        if (number.getText().toString().equals("")){
-            number.setBackgroundColor(Color.RED);
-            return false;}
-        boolean isNumeric=true;
-        try {
-            int x = Integer.parseInt(number.getText().toString());
-        }catch (NumberFormatException nfe){
-            isNumeric=false;
-        }
-        if (!isNumeric) {
-            Toast.makeText(UpdateCourse.this, "Section Number Must be Integer", Toast.LENGTH_LONG).show();
-            number.setBackgroundColor(Color.RED);
-            return false;
-        }
-        if (time.getText().toString().equals("")){
-            time.setBackgroundColor(Color.RED);
-            return false;}
-        if (date.getText().toString().equals("")){
-            date.setBackgroundColor(Color.RED);
-            return false;}
-        if(place.getText().toString().equals("")){
-            place.setBackgroundColor(Color.RED);
-            return false;}
-        return true;
-    }
-
-    /* boolean checkBeforeLoad(){
-        if(code.getText().toString().equals("")){
-            return false;
-            code.setBackgroundColor(Color.RED);
-        }
-        if(number.getText().toString().equals("")){
-            return false;
-            number.setBackgroundColor(Color.RED);
-        }
-        return true;
-    }*/
 
 }
 
