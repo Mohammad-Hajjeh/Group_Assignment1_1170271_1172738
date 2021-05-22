@@ -10,14 +10,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-
-        android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".SearchCourse"></activity>
-        <activity android:name=".UpdateCourse" />
-        <activity android:name=".AddCourse" />
-        <activity android:name=".ShowCourses" />
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Activities.SignupAdmin"></activity>
+        <activity android:name=".Activities.MainActivity" />
+        <activity android:name=".Activities.SearchCourse" />
+        <activity android:name=".Activities.UpdateCourse" />
+        <activity android:name=".Activities.AddCourse" />
+        <activity android:name=".Activities.ShowCourses" />
+        <activity android:name=".Activities.LoginAdmin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

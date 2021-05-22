@@ -1,4 +1,4 @@
-package edu.bzu.group_assignment1_1170271_1172738;
+package edu.bzu.group_assignment1_1170271_1172738.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -24,6 +24,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+
+import edu.bzu.group_assignment1_1170271_1172738.R;
 
 public class SearchCourse extends AppCompatActivity {
     ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();

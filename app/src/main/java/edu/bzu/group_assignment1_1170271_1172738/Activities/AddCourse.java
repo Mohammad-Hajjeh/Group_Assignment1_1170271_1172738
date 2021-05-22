@@ -1,8 +1,10 @@
-package edu.bzu.group_assignment1_1170271_1172738;
+package edu.bzu.group_assignment1_1170271_1172738.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import edu.bzu.group_assignment1_1170271_1172738.R;
 
 public class AddCourse extends AppCompatActivity {
 
