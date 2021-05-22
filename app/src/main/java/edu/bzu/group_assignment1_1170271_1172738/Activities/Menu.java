@@ -30,4 +30,14 @@ public class Menu extends AppCompatActivity {
         Intent intent = new Intent(this,LoginAdmin.class);
         startActivity(intent);
     }
+
+    public void addCoursesClick(View view) {
+        Intent intent = new Intent(this,AddCourse.class);
+        startActivity(intent);
+    }
+
+    public void updateCoursesClick(View view) {
+        Intent intent = new Intent(this,UpdateCourse.class);
+        startActivity(intent);
+    }
 }

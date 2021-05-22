@@ -47,22 +47,29 @@ public class SearchCourse extends AppCompatActivity {
     }
     public void searchClick(View view) {
         list.clear();
-        EditText edtCat = (EditText)findViewById(R.id.edtSerarch);
-        String url = "http://10.0.2.2:8080/rest/search.php?cat=" + edtCat.getText();
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.INTERNET)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.INTERNET},
-                    123);
-
-        } else{
+        EditText edtCat = (EditText) findViewById(R.id.edtSerarch);
+        String searchCode = edtCat.getText().toString();
+        if (searchCode.isEmpty()) {
             DownloadTextTask runner = new DownloadTextTask();
-            runner.execute(url);
+            runner.onPostExecute("Empty Code !");
+            Toast.makeText(this, "Error: Empty Code !", Toast.LENGTH_SHORT).show();
+        } else {
+            String url = "http://10.0.2.2:8080/rest/search.php?cat=" + edtCat.getText();
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.INTERNET)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.INTERNET},
+                        123);
+
+            } else {
+                DownloadTextTask runner = new DownloadTextTask();
+                runner.execute(url);
+            }
+            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
-        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
     private InputStream OpenHttpConnection(String urlString) throws IOException
     {
@@ -143,7 +150,17 @@ public class SearchCourse extends AppCompatActivity {
                     list.add(item);
                 ((ListView) findViewById(R.id.searchList)).setAdapter(sa2);
 
-            } else {
+            }else if (result.equalsIgnoreCase("Empty Code !")) {
+                Toast.makeText(SearchCourse.this, result, Toast.LENGTH_SHORT).show();
+                HashMap<String, String> item;
+                String StatesAndCapitals = "                         Error: "+result;
+                item = new HashMap<String, String>();
+                item.put("line1", StatesAndCapitals);
+                list.add(item);
+                ((ListView) findViewById(R.id.searchList)).setAdapter(sa2);
+
+            }
+            else {
                 String str = result;
                 Toast.makeText(SearchCourse.this, result, Toast.LENGTH_SHORT).show();
                 String[] courses = str.split("#");

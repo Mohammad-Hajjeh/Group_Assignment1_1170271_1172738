@@ -38,6 +38,7 @@
         android:id="@+id/btnUpdate"
         style="@style/btn"
         android:background="@drawable/custom2"
+        android:onClick="updateCoursesClick"
 
         android:text="Update Course"
         android:textColor="#FFFFFF"
@@ -81,7 +82,7 @@ android:onClick="btnExitToLogin"
         android:id="@+id/btnADD"
         style="@style/btn"
         android:background="@drawable/custom2"
-
+        android:onClick="addCoursesClick"
         android:text="Add Course"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
