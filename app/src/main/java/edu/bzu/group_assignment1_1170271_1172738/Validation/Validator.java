@@ -8,14 +8,14 @@ public class Validator {
             return false;
     }
     public static boolean checkFirstNameValidity(String firstName){
-        if(firstName.length()< 2)
+        if(firstName.length()< 3)
             return false;
         else
             return true;
     }
 
     public static boolean checkLastNameValidity(String lastName){
-        if(lastName.length() < 2)
+        if(lastName.length() < 3)
             return false;
         else
             return true;

@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -59,18 +60,29 @@ public class UpdateCourse extends AppCompatActivity {
     public void onClickCancel(View view) {
         Intent intent = new Intent(this, Menu.class);
         startActivity(intent);
+        Toast.makeText(UpdateCourse.this, "UPDATE COURSE CANCELED", Toast.LENGTH_SHORT).show();
+
     }
 
     public void onClickLoad(View view) {
         String codeLoad = code.getText().toString();
         String codeNumber = number.getText().toString();
-        if (codeLoad.isEmpty() || codeNumber.isEmpty()) {
-            if(codeLoad.isEmpty())
-            Toast.makeText(this, "Error: Empty Code Filed !", Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(this, "Error: Empty Section Filed !", Toast.LENGTH_SHORT).show();
 
-        } else {
+        if (codeLoad.isEmpty() || codeNumber.isEmpty() || !TextUtils.isDigitsOnly(number.getText())) {
+            if (codeLoad.isEmpty()) {
+                code.setError(getResources().getString(R.string.error_required_field));
+                Toast.makeText(this, "Error: Empty Code Filed !", Toast.LENGTH_SHORT).show();
+            }else if(!TextUtils.isDigitsOnly(number.getText()))
+            {
+                number.setError(getResources().getString(R.string.error_invalid_section));
+            }
+            else {
+                number.setError(getResources().getString(R.string.error_required_field));
+                Toast.makeText(this, "Error: Empty Section Filed !", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    else {
             String url = "http://10.0.2.2:8080/rest/search2.php?cat=" + code.getText().toString() + "&cat1=" + number.getText().toString();
             if (ContextCompat.checkSelfPermission(this,
                     Manifest.permission.INTERNET)

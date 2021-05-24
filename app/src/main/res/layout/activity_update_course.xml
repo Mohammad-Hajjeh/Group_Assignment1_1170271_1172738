@@ -45,7 +45,6 @@
         android:gravity="center"
         android:hint="Course Section"
         android:backgroundTint="@android:color/holo_red_dark"
-
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

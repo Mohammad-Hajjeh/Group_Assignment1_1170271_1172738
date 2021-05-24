@@ -51,8 +51,7 @@ public class SearchCourse extends AppCompatActivity {
         EditText edtCat = (EditText) findViewById(R.id.edtSerarch);
         String searchCode = edtCat.getText().toString();
         if (searchCode.isEmpty()) {
-            DownloadTextTask runner = new DownloadTextTask();
-            runner.onPostExecute("Empty Code !");
+            edtCat.setError(getResources().getString(R.string.error_required_field));
             Toast.makeText(this, "Error: Empty Code !", Toast.LENGTH_SHORT).show();
         } else {
             String url = "http://10.0.2.2:8080/rest/search.php?cat=" + edtCat.getText();
@@ -149,15 +148,6 @@ public class SearchCourse extends AppCompatActivity {
                     item = new HashMap<String, String>();
                     item.put("line1", StatesAndCapitals);
                     list.add(item);
-                ((ListView) findViewById(R.id.searchList)).setAdapter(sa2);
-
-            }else if (result.equalsIgnoreCase("Empty Code !")) {
-                Toast.makeText(SearchCourse.this, result, Toast.LENGTH_SHORT).show();
-                HashMap<String, String> item;
-                String StatesAndCapitals = "                         Error: "+result;
-                item = new HashMap<String, String>();
-                item.put("line1", StatesAndCapitals);
-                list.add(item);
                 ((ListView) findViewById(R.id.searchList)).setAdapter(sa2);
 
             }

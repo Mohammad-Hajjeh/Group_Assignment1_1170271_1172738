@@ -75,10 +75,12 @@ public class SignupAdmin extends AppCompatActivity {
                             emailAddressInputField.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_check, 0);
                         } else {
                             emailAddressInputField.setError(getResources().getString(R.string.error_email_exists));
+                            emailAddressInputField.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
                             allInputsValidated = false;
                         }
                     } else {
                         emailAddressInputField.setError(getResources().getString(R.string.error_invalid_email));
+                        emailAddressInputField.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
                         allInputsValidated = false;
                     }
                 } else {
@@ -91,12 +93,12 @@ public class SignupAdmin extends AppCompatActivity {
                         firstNameInputField.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_check,0);
                     } else {
                         firstNameInputField.setError(getResources().getString(R.string.error_invalid_firstname));
-
+                        firstNameInputField.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
                         allInputsValidated = false;
                     }
                 } else {
                     firstNameInputField.setError(getResources().getString(R.string.error_required_field));
-
+                    firstNameInputField.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
                     allInputsValidated = false;
                 }
 
@@ -106,11 +108,13 @@ public class SignupAdmin extends AppCompatActivity {
                     }
                     else {
                         lastNameInputField.setError(getResources().getString(R.string.error_invalid_lastname));
+                        lastNameInputField.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
                         allInputsValidated = false;
                     }
                 }
                 else {
                     lastNameInputField.setError(getResources().getString(R.string.error_required_field));
+                    lastNameInputField.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
                     allInputsValidated = false;
                 }
 
@@ -119,11 +123,13 @@ public class SignupAdmin extends AppCompatActivity {
                         passwordInputField.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_check, 0);
                     } else {
                         passwordInputField.setError(getResources().getString(R.string.error_invalid_password));
+                        passwordInputField.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
                         allInputsValidated = false;
                     }
                 }
                 else {
                     passwordInputField.setError(getResources().getString(R.string.error_required_field));
+                    passwordInputField.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
                     allInputsValidated = false;
                 }
 
@@ -133,11 +139,13 @@ public class SignupAdmin extends AppCompatActivity {
                         confirmPasswordInputField.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_check, 0);
                     } else {
                         confirmPasswordInputField.setError(getResources().getString(R.string.error_passwords_mismatch));
+                        confirmPasswordInputField.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
                         allInputsValidated = false;
                     }
                 }
                 else {
                     confirmPasswordInputField.setError(getResources().getString(R.string.error_required_field));
+                    confirmPasswordInputField.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
                     allInputsValidated = false;
                 }
 

@@ -54,6 +54,8 @@ public class AddCourse extends AppCompatActivity {
     public void onClickCancel(View view) {
         Intent intent = new Intent(this, Menu.class);
         startActivity(intent);
+        Toast.makeText(AddCourse.this, "ADDED COURSE CANCELED", Toast.LENGTH_SHORT).show();
+
     }
 
     private String processRequest(String restUrl) throws UnsupportedEncodingException {
@@ -142,6 +144,8 @@ public class AddCourse extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            Toast.makeText(AddCourse.this, "ADDED COURSE SUCCESSFULLY", Toast.LENGTH_SHORT).show();
+
         }
     }
 

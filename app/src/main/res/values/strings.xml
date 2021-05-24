@@ -14,6 +14,8 @@
     <string name="error_invalid_lastname">Lastname must be at least 3 characters</string>
     <string name="error_invalid_password">Password Must Consist of at least 1 Number, 1 Special Character and 1 Letter</string>
     <string name="error_passwords_mismatch">Passwords Do NOT Match!</string>
+    <string name="error_invalid_section">Section Is Not Number!</string>
+
 
 
 </resources>
