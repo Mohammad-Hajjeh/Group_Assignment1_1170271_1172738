@@ -35,13 +35,7 @@ public class Validator {
         else
             return false;
     }
-    public static boolean checkPhoneNumberValidity(String phoneNumber){
-        String PHONE_NUMBER_REGEX = "^(?=.{9,})[0-9]+";
-        if(phoneNumber.matches(PHONE_NUMBER_REGEX))
-            return true;
-        else
-            return false;
-    }
+
     public static boolean checkEmailAddressValidity(String emailAddress){
         String EMAIL_ADDRESS_REGEX = "^[A-Za-z0-9+_.-]+@(.+)$";
         if(emailAddress.matches(EMAIL_ADDRESS_REGEX))

@@ -55,6 +55,11 @@ public class DeleteCourse extends AppCompatActivity {
         time = findViewById(R.id.etu_time2);
         date = findViewById(R.id.etu_date2);
         place = findViewById(R.id.etu_place2);
+        name.setEnabled(false);
+        lecturer.setEnabled(false);
+        time.setEnabled(false);
+        date.setEnabled(false);
+        place.setEnabled(false);
     }
 
     public void onClickCancel2(View view) {
@@ -72,22 +77,23 @@ public class DeleteCourse extends AppCompatActivity {
                 Toast.makeText(this, "Error: Empty Section Filed !", Toast.LENGTH_SHORT).show();
 
         } else {
+
             String url = "http://10.0.2.2:8080/rest/search2.php?cat=" + code.getText().toString() + "&cat1=" + number.getText().toString();
+                if (ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.INTERNET)
+                        != PackageManager.PERMISSION_GRANTED) {
 
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.INTERNET)
-                    != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.INTERNET},
+                            123);
 
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.INTERNET},
-                        123);
+                } else {
+                    DeleteCourse.DownloadTextTask1 runner = new DeleteCourse.DownloadTextTask1();
+                    runner.execute(url);
+                }
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
-            } else {
-                DeleteCourse.DownloadTextTask1 runner = new DeleteCourse.DownloadTextTask1();
-                runner.execute(url);
-            }
-            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
     private InputStream OpenHttpConnection(String urlString) throws IOException
@@ -161,20 +167,23 @@ public class DeleteCourse extends AppCompatActivity {
         } else {
             String url = "http://10.0.2.2:8080/rest/delete.php?cat=" + code.getText().toString() + "&cat1=" + number.getText().toString();
 
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.INTERNET)
-                    != PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.INTERNET)
+                        != PackageManager.PERMISSION_GRANTED) {
 
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.INTERNET},
-                        123);
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.INTERNET},
+                            123);
 
-            } else {
-                DeleteCourse.SendPostRequest runner = new DeleteCourse.SendPostRequest();
-                runner.execute(url);
-            }
-            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                } else {
+                    DeleteCourse.SendPostRequest runner = new DeleteCourse.SendPostRequest();
+                    runner.execute(url);
+                    Intent intent = new Intent(this, Menu.class);
+                    startActivity(intent);
+                }
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
         }
     }
 
@@ -194,7 +203,7 @@ public class DeleteCourse extends AppCompatActivity {
 
             } else {
                 String str = result;
-                Toast.makeText(DeleteCourse.this, result, Toast.LENGTH_SHORT).show();
+
                 String[] course = str.split("@");
                     Course courseObject = new Course();
                     courseObject.setCode(course[0]);
@@ -203,7 +212,7 @@ public class DeleteCourse extends AppCompatActivity {
                     courseObject.setLecturer(course[3]);
                     courseObject.setDay(course[4]);
                     courseObject.setTime(course[5]);
-                    courseObject.setPlace(course[5]);
+                    courseObject.setPlace(course[6].split("#")[0]);
 
                 code.setText(courseObject.getCode());
                 name.setText(courseObject.getName());
@@ -303,7 +312,6 @@ public class DeleteCourse extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            Toast.makeText(DeleteCourse.this, result, Toast.LENGTH_SHORT).show();
         }
     }
 

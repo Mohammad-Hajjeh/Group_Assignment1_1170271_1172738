@@ -163,7 +163,6 @@ public class SearchCourse extends AppCompatActivity {
             }
             else {
                 String str = result;
-                Toast.makeText(SearchCourse.this, result, Toast.LENGTH_SHORT).show();
                 String[] courses = str.split("#");
                 String[][] StatesAndCapitals = {{"", "", "", "", "", "", ""},{"", "", "", "", "", "", ""}
                 ,{"", "", "", "", "", "", ""},{"", "", "", "", "", "", ""}
@@ -179,7 +178,7 @@ public class SearchCourse extends AppCompatActivity {
                     courseObject.setLecturer(course[3]);
                     courseObject.setDay(course[4]);
                     courseObject.setTime(course[5]);
-                    courseObject.setPlace(course[5]);
+                    courseObject.setPlace(course[6]);
                     StatesAndCapitals[i][0] = "  Code: " + courseObject.getCode();
                     StatesAndCapitals[i][1] = "  Name: " + courseObject.getName();
                     StatesAndCapitals[i][2] = "  Number: " + courseObject.getNumber();

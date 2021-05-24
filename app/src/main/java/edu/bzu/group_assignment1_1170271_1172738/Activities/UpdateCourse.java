@@ -72,7 +72,6 @@ public class UpdateCourse extends AppCompatActivity {
 
         } else {
             String url = "http://10.0.2.2:8080/rest/search2.php?cat=" + code.getText().toString() + "&cat1=" + number.getText().toString();
-
             if (ContextCompat.checkSelfPermission(this,
                     Manifest.permission.INTERNET)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -87,7 +86,8 @@ public class UpdateCourse extends AppCompatActivity {
             }
             InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
+
+            }
     }
     private InputStream OpenHttpConnection(String urlString) throws IOException
     {
@@ -164,7 +164,6 @@ public class UpdateCourse extends AppCompatActivity {
 
             } else {
                 String str = result;
-                Toast.makeText(UpdateCourse.this, result, Toast.LENGTH_SHORT).show();
                 String[] course = str.split("@");
                 Course courseObject = new Course();
                 courseObject.setCode(course[0]);
@@ -173,8 +172,7 @@ public class UpdateCourse extends AppCompatActivity {
                 courseObject.setLecturer(course[3]);
                 courseObject.setDay(course[4]);
                 courseObject.setTime(course[5]);
-                courseObject.setPlace(course[5]);
-
+                courseObject.setPlace(course[6].split("#")[0]);
                 code.setText(courseObject.getCode());
                 name.setText(courseObject.getName());
                 number.setText(courseObject.getNumber());
@@ -273,43 +271,44 @@ public class UpdateCourse extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            Toast.makeText(UpdateCourse.this, result, Toast.LENGTH_SHORT).show();
+            Toast.makeText(UpdateCourse.this, "UPDATE COURSE SUCCESSFULLY", Toast.LENGTH_SHORT).show();
         }
     }
     public void onClickUpdate(View view) {
         String restUrl = "http://10.0.2.2:8080/rest/update.php";
-        if(checkEditTexts()){
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.INTERNET)
-                    != PackageManager.PERMISSION_GRANTED) {
 
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.INTERNET},
-                        123);
+            if (checkEditTexts()) {
+                if (ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.INTERNET)
+                        != PackageManager.PERMISSION_GRANTED) {
 
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.INTERNET},
+                            123);
+
+                } else {
+                    UpdateCourse.SendPostRequest runner = new UpdateCourse.SendPostRequest();
+                    runner.execute(restUrl);
+                    Intent intent = new Intent(this, Menu.class);
+                    startActivity(intent);
+                }
             } else {
-                UpdateCourse.SendPostRequest runner = new UpdateCourse.SendPostRequest();
-                runner.execute(restUrl);
-                Intent intent = new Intent(this, Menu.class);
-                startActivity(intent);
+                Toast.makeText(UpdateCourse.this, "Please Fill All The Fields", Toast.LENGTH_LONG).show();
             }
-        }
-        else{
-            Toast.makeText(UpdateCourse.this, "Please Fill All The Fields", Toast.LENGTH_LONG).show();
-        }
-    }
 
+    }
 
     boolean checkEditTexts() {
         if (code.getText().toString().equals(""))
-        { code.setBackgroundColor(Color.RED);
+        {
+            code.setError(getResources().getString(R.string.error_required_field));
             return false;
         }
         if (name.getText().toString().equals("")){
-            name.setBackgroundColor(Color.RED);
+            name.setError(getResources().getString(R.string.error_required_field));
             return false;}
         if (number.getText().toString().equals("")){
-            number.setBackgroundColor(Color.RED);
+            number.setError(getResources().getString(R.string.error_required_field));
             return false;}
         boolean isNumeric=true;
         try {
@@ -322,14 +321,17 @@ public class UpdateCourse extends AppCompatActivity {
             number.setBackgroundColor(Color.RED);
             return false;
         }
+        if (lecturer.getText().toString().equals("")){
+            lecturer.setError(getResources().getString(R.string.error_required_field));
+            return false;}
         if (time.getText().toString().equals("")){
-            time.setBackgroundColor(Color.RED);
+            time.setError(getResources().getString(R.string.error_required_field));
             return false;}
         if (date.getText().toString().equals("")){
-            date.setBackgroundColor(Color.RED);
+            date.setError(getResources().getString(R.string.error_required_field));
             return false;}
         if(place.getText().toString().equals("")){
-            place.setBackgroundColor(Color.RED);
+            place.setError(getResources().getString(R.string.error_required_field));
             return false;}
         return true;
     }

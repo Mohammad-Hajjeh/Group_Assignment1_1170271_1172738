@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -141,13 +142,11 @@ public class AddCourse extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-
-            Toast.makeText(AddCourse.this, result, Toast.LENGTH_SHORT).show();
         }
     }
 
     public void onClickAdd(View view) {
-        String restUrl = "http://10.0.2.2:8080/rest/post.php";
+        String restUrl = "http://10.0.2.2:8080/rest/add.php";
         if(checkEditTexts()){
             if (ContextCompat.checkSelfPermission(this,
                     Manifest.permission.INTERNET)
@@ -171,14 +170,15 @@ public class AddCourse extends AppCompatActivity {
 
     boolean checkEditTexts() {
         if (code.getText().toString().equals(""))
-        { code.setBackgroundColor(Color.RED);
+        {
+            code.setError(getResources().getString(R.string.error_required_field));
             return false;
         }
         if (name.getText().toString().equals("")){
-            name.setBackgroundColor(Color.RED);
+            name.setError(getResources().getString(R.string.error_required_field));
             return false;}
         if (number.getText().toString().equals("")){
-            number.setBackgroundColor(Color.RED);
+            number.setError(getResources().getString(R.string.error_required_field));
             return false;}
         boolean isNumeric=true;
         try {
@@ -191,14 +191,17 @@ public class AddCourse extends AppCompatActivity {
             number.setBackgroundColor(Color.RED);
             return false;
         }
+        if (lecturer.getText().toString().equals("")){
+            lecturer.setError(getResources().getString(R.string.error_required_field));
+            return false;}
         if (time.getText().toString().equals("")){
-            time.setBackgroundColor(Color.RED);
+            time.setError(getResources().getString(R.string.error_required_field));
             return false;}
         if (date.getText().toString().equals("")){
-            date.setBackgroundColor(Color.RED);
+            date.setError(getResources().getString(R.string.error_required_field));
             return false;}
         if(place.getText().toString().equals("")){
-            place.setBackgroundColor(Color.RED);
+            place.setError(getResources().getString(R.string.error_required_field));
             return false;}
         return true;
     }

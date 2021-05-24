@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.InetAddresses;
 import android.os.Bundle;
+import android.util.Patterns;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import java.util.ArrayList;
@@ -52,7 +56,7 @@ public class ShowCourses extends AppCompatActivity {
                     new String[]{Manifest.permission.INTERNET},
                     123);
 
-        } else{
+        } else {
             DownloadTextTask runner = new DownloadTextTask();
             runner.execute(url);
         }
@@ -116,6 +120,11 @@ public class ShowCourses extends AppCompatActivity {
         return str;
     }
 
+    public void cancelShow(View view) {
+        Intent intent = new Intent(this,Menu.class);
+        startActivity(intent);
+    }
+
     private class DownloadTextTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
@@ -123,18 +132,7 @@ public class ShowCourses extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(String result) {
-            if (result.equalsIgnoreCase("Wrong Code No Data Found !")) {
-                Toast.makeText(ShowCourses.this, result, Toast.LENGTH_SHORT).show();
-                HashMap<String, String> item;
-                String StatesAndCapitals = "            Error: "+result;
-                item = new HashMap<String, String>();
-                item.put("line1", StatesAndCapitals);
-                list.add(item);
-                ((ListView) findViewById(R.id.course_list)).setAdapter(sa2);
-
-            } else {
                 String str = result;
-                Toast.makeText(ShowCourses.this, result, Toast.LENGTH_SHORT).show();
                 String[] courses = str.split("#");
 
                 for (int i = 0; i <courses.length; i++) {
@@ -146,7 +144,7 @@ public class ShowCourses extends AppCompatActivity {
                     courseObject.setLecturer(course[3]);
                     courseObject.setDay(course[4]);
                     courseObject.setTime(course[5]);
-                    courseObject.setPlace(course[5]);
+                    courseObject.setPlace(course[6]);
                     StatesAndCapitals[i][0] = "  Code: " + courseObject.getCode();
                     StatesAndCapitals[i][1] = "  Name: " + courseObject.getName();
                     StatesAndCapitals[i][2] = "  Number: " + courseObject.getNumber();
@@ -174,7 +172,6 @@ public class ShowCourses extends AppCompatActivity {
                 ((ListView) findViewById(R.id.course_list)).setAdapter(sa);
             }
         }
-    }
     private String[][] StatesAndCapitals = {{"", "", "", "", "", "", ""},{"", "", "", "", "", "", ""}
             ,{"", "", "", "", "", "", ""},{"", "", "", "", "", "", ""}
             ,{"", "", "", "", "", "", ""},{"", "", "", "", "", "", ""}
